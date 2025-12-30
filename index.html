@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>V Connections SA | iPhones & Accessories</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b132b;
+      color: white;
+    }
+
+    header {
+      background: #1c2541;
+      padding: 25px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 26px;
+    }
+
+    header p {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #adb5bd;
+    }
+
+    .section {
+      padding: 20px;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    .title {
+      font-size: 20px;
+      margin-bottom: 15px;
+      border-left: 5px solid #3a86ff;
+      padding-left: 10px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+
+    .product {
+      background: #1c2541;
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    }
+
+    .product h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .product p {
+      margin: 6px 0;
+      font-size: 15px;
+      color: #e9ecef;
+    }
+
+    .product button {
+      margin-top: 10px;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 25px;
+      background: #25D366;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+    }
+
+    .cart {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #000814;
+      padding: 15px;
+      border-top: 2px solid #3a86ff;
+    }
+
+    .cart p {
+      margin: 0 0 10px;
+      font-weight: bold;
+    }
+
+    .cart button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 30px;
+      border: none;
+      background: #ffbe0b;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    footer {
+      background: #1c2541;
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+      color: #adb5bd;
+      margin-bottom: 90px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>V Connections SA</h1>
+  <p>Trusted iPhone & Accessories Store 🇿🇦</p>
+</header>
+
+<!-- PHONES -->
+<div class="section">
+  <h2 class="title">📱 iPhones</h2>
+
+  <div class="products">
+    <div class="product">
+      <h3>iPhone SE 2020</h3>
+      <p>R3 500</p>
+      <button onclick="add('iPhone SE 2020',3500)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <h3>iPhone XR</h3>
+      <p>R4 500</p>
+      <button onclick="add('iPhone XR',4500)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <h3>iPhone 11</h3>
+      <p>R5 400</p>
+      <button onclick="add('iPhone 11',5400)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <h3>iPhone 12 Mini</h3>
+      <p>R4 800</p>
+      <button onclick="add('iPhone 12 Mini',4800)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <h3>iPhone 12</h3>
+      <p>R6 500</p>
+      <button onclick="add('iPhone 12',6500)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <h3>iPhone 13</h3>
+      <p>R9 000</p>
+      <button onclick="add('iPhone 13',9000)">Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+<!-- ACCESSORIES -->
+<div class="section">
+  <h2 class="title">🔌 Accessories</h2>
+
+  <div class="products">
+    <div class="product">
+      <h3>Apple Cable</h3>
+      <p>R80</p>
+      <button onclick="add('Apple Cable',80)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <h3>Apple Cable & Adapter</h3>
+      <p>R180</p>
+      <button onclick="add('Apple Cable & Adapter',180)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <h3>Android Cable</h3>
+      <p>R60</p>
+      <button onclick="add('Android Cable',60)">Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="section">
+  <h2 class="title">📞 Contact & Orders</h2>
+  <div class="product">
+    <p><strong>WhatsApp:</strong> +27 79 910 9868</p>
+    <p><strong>Email:</strong> vusiphungo@gmail.com</p>
+  </div>
+</div>
+
+<!-- CART -->
+<div class="cart">
+  <p id="cartText">🛒 Cart: 0 items — R0</p>
+  <button onclick="checkout()">Checkout on WhatsApp</button>
+</div>
+
+<footer>
+  © 2025 V Connections SA<br>
+  Secure • Reliable • Affordable
+</footer>
+
+<script>
+  let cart = [];
+  let total = 0;
+
+  function add(name, price) {
+    cart.push({name, price});
+    total += price;
+    updateCart();
+  }
+
+  function updateCart() {
+    document.getElementById("cartText").innerText =
+      `🛒 Cart: ${cart.length} items — R${total}`;
+  }
+
+  function checkout() {
+    let message = "Hello V Connections SA,%0A%0AOrder:%0A";
+    cart.forEach(item => {
+      message += `- ${item.name} (R${item.price})%0A`;
+    });
+    message += `%0ATotal: R${total}`;
+
+    window.open(
+      "https://wa.me/27799109868?text=" + message,
+      "_blank"
+    );
+  }
+</script>
+
+</body>
+</html>
